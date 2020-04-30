@@ -17,7 +17,7 @@ class NerusmeApp : Application() {
 
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val serviceChannel = NotificationChannel(CHANNEL_ID, "Nerus Me Service Channel", NotificationManager.IMPORTANCE_LOW)
+            val serviceChannel = NotificationChannel(CHANNEL_ID, "Silent app Service Channel", NotificationManager.IMPORTANCE_UNSPECIFIED)
             serviceChannel.description = "Zprávy od služby Neruš mě"
             val manager = getSystemService(NotificationManager::class.java)
             if(manager!=null) {

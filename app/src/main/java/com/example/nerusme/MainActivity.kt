@@ -8,6 +8,7 @@ import android.os.IBinder
 import android.provider.Settings
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -15,10 +16,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
     var myService: ExampleService? = null
     var broadcastReceiver : BroadcastReceiver? = null
+    var beziAktivita = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         if (!(getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager).isNotificationPolicyAccessGranted) {
             AlertDialog.Builder(this)
@@ -53,11 +56,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun startService(view: View) {
+        beziAktivita = true
         val serviceIntent = Intent(this, ExampleService::class.java)
         startService(serviceIntent)
         bindService(Intent(this, ExampleService::class.java), myConnection, Context.BIND_AUTO_CREATE)
     }
     fun stopService(view: View) {
+        beziAktivita = false
         val serviceIntent = Intent(this, ExampleService::class.java)
         unbindService(myConnection)
         stopService(serviceIntent)

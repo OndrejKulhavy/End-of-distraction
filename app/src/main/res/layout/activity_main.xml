@@ -8,9 +8,9 @@
 
     <TextView
         android:id="@+id/velikost"
-        android:layout_width="70dp"
-        android:layout_height="17dp"
-        android:text="Hello World!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
         app:layout_constraintEnd_toEndOf="@+id/popisOrientace"
         app:layout_constraintStart_toStartOf="@+id/popisOrientace"
         app:layout_constraintTop_toBottomOf="@+id/popisOrientace" />
@@ -19,22 +19,23 @@
         android:id="@+id/popisOrientace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
-        android:text="TextView"
+        android:text=""
         android:textSize="60dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="100dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatButton
@@ -42,14 +43,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="startService"
-            android:text="Start" />
+            android:text="Start"
+            android:textStyle="bold" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/stopService"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="stopService"
-            android:text="Stop" />
+            android:text="Stop"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

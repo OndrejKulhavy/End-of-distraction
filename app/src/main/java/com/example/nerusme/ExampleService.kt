@@ -32,6 +32,7 @@ class ExampleService : Service() {
     }
 
     override fun onDestroy() {
+
         kontrolor?.unregister()
     }
 
@@ -40,7 +41,7 @@ class ExampleService : Service() {
         val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0)
 
         val notification = NotificationCompat.Builder(this, NerusmeApp.CHANNEL_ID)
-            .setContentTitle("Nerus me")
+            .setContentTitle("End of distraction")
             .setContentText("Started")
             .setSmallIcon(R.drawable.ic_android_black_24dp)
             .setContentIntent(pendingIntent)
@@ -63,7 +64,7 @@ class ExampleService : Service() {
     fun showNotification(message : String) {
         val manager = NotificationManagerCompat.from(this)
         val notification = NotificationCompat.Builder(this, NerusmeApp.CHANNEL_ID)
-            .setContentTitle("Nerus me")
+            .setContentTitle("End of distraction")
             .setContentText(message)
             .setSmallIcon(R.drawable.ic_android_black_24dp)
             .setCategory(NotificationCompat.CATEGORY_MESSAGE)

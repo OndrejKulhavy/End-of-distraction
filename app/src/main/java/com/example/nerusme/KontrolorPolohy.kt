@@ -51,11 +51,15 @@ class KontrolorPolohy (
         if (uhel > -8 && uhel < 8){
             Log.d("Kontrolor", "Otaceni")
             service.sendMessageToActivity(velikost, "otáčení...")
+            service.showNotification("Otáčení")
+            if (notificationManager.isNotificationPolicyAccessGranted){
+                notificationManager.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_ALL)
+            }
         }
     }
     private fun zavibruj(){
         uzJsemVibroval = true
-        vibrator.vibrate(50)
+        vibrator.vibrate(40)
     }
 
     fun register() {
