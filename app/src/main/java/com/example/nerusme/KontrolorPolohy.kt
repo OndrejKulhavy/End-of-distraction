@@ -15,6 +15,10 @@ class KontrolorPolohy (
     val service : ExampleService
 ) : SensorEventListener {
 
+    var xold: Float = 0.0f
+    var yold: Float = 0.0f
+    var zold: Float = 0.0f
+
     var uzJsemVibroval = false
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int){}
@@ -23,8 +27,14 @@ class KontrolorPolohy (
         val x = event!!.values[0]
         val y = event.values[1]
         val z = event.values[2]
+        if(x==xold && y==yold && z==zold) {
+            return
+        }
+        xold=x
+        yold=y
+        zold=z
         val velikost = "x  =  ${x}\n\n "+ "y = ${y}\n\n" + "z = ${z}"
-//        Log.d("Kontrolor", "x  =  ${x}\n\n "+ "y = ${y}\n\n" + "z = ${z}")
+        Log.d("Kontrolor", "x  =  ${x}\n\n "+ "y = ${y}\n\n" + "z = ${z}")
         val uhel = z
         if(uhel > 8f){
             Log.d("Kontrolor", "Nahoru")
@@ -63,7 +73,8 @@ class KontrolorPolohy (
     }
 
     fun register() {
-        sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL)
+//        sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL)
+        sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), 5000000, 10000000)
     }
     fun unregister() {
         sensorManager.unregisterListener(this)

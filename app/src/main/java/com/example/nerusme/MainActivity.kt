@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
-    var myService: ExampleService? = null
+//    var myService: ExampleService? = null
     var broadcastReceiver : BroadcastReceiver? = null
     var beziAktivita = false
 
@@ -45,13 +45,17 @@ class MainActivity : AppCompatActivity() {
                 popisOrientace.text = popisOrientaceValue
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
         val intentFilter = IntentFilter()
         intentFilter.addAction("service.to.activity.transfer")
         registerReceiver(broadcastReceiver, intentFilter)
     }
 
-    override fun onStop() {
-        super.onStop()
+    override fun onPause() {
+        super.onPause()
         unregisterReceiver(broadcastReceiver)
     }
 
@@ -59,24 +63,24 @@ class MainActivity : AppCompatActivity() {
         beziAktivita = true
         val serviceIntent = Intent(this, ExampleService::class.java)
         startService(serviceIntent)
-        bindService(Intent(this, ExampleService::class.java), myConnection, Context.BIND_AUTO_CREATE)
+//        bindService(Intent(this, ExampleService::class.java), myConnection, Context.BIND_AUTO_CREATE)
     }
     fun stopService(view: View) {
         beziAktivita = false
         val serviceIntent = Intent(this, ExampleService::class.java)
-        unbindService(myConnection)
+//        unbindService(myConnection)
         stopService(serviceIntent)
     }
 
-    private val myConnection = object : ServiceConnection {
-        override fun onServiceConnected(className: ComponentName, service: IBinder) {
-            val channel = service as ExampleService.MyChannelToService
-            myService = channel.getService()
-        }
-
-        override fun onServiceDisconnected(name: ComponentName) {
-            myService = null
-        }
-    }
+//    private val myConnection = object : ServiceConnection {
+//        override fun onServiceConnected(className: ComponentName, service: IBinder) {
+//            val channel = service as ExampleService.MyChannelToService
+//            myService = channel.getService()
+//        }
+//
+//        override fun onServiceDisconnected(name: ComponentName) {
+//            myService = null
+//        }
+//    }
 
 }
