@@ -7,7 +7,7 @@ import android.os.Build
 
 class NerusmeApp : Application() {
     companion object {
-        val CHANNEL_ID = "nerusmeServiceChannel"
+        val CHANNEL_ID = "Silent app Service Channel"
     }
 
     override fun onCreate() {
@@ -17,7 +17,7 @@ class NerusmeApp : Application() {
 
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val serviceChannel = NotificationChannel(CHANNEL_ID, "Silent app Service Channel", NotificationManager.IMPORTANCE_UNSPECIFIED)
+            val serviceChannel = NotificationChannel(CHANNEL_ID, "Silent app Service Channel", NotificationManager.IMPORTANCE_DEFAULT)
             serviceChannel.description = "Zprávy od služby Neruš mě"
             val manager = getSystemService(NotificationManager::class.java)
             if(manager!=null) {
